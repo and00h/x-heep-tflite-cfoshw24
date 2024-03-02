@@ -1,0 +1,6 @@
+[submodule "tflite-micro-x-heep"]
+	path = tflite-micro
+	url = https://github.com/and00h/tflite-micro-x-heep-examples/
+[submodule "x-heep-femu-tflite-sdk"]
+	path = x-heep-femu-tflite-sdk
+	url = https://github.com/and00h/x-heep-femu-tflite-sdk
