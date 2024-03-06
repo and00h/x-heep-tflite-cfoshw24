@@ -1,6 +1,6 @@
 # X-HEEP + Tensorflow Lite for Microcontrollers + Vulnerable app
 
-This repository contains material related to the submission for the 2nd Workshop on Open-Source Hardware.
+This repository contains material related to the submission for the 2nd Workshop on Open-Source Hardware at the Computing Frontiers 2024 conference.
 
 ## Setup
 
