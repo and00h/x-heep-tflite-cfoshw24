@@ -52,3 +52,4 @@ with open("xheep_uart_dump.bin", "wb") as f:
         f.write(r)
         if len(r) == 0:
             break
+        print(r.decode('ascii', errors='replace'))

@@ -117,5 +117,6 @@ if not found:
             if CANARY_1 in ascii_out:
                 print("Found start of buffer at 0x{:08X}".format(i))
                 found = True
+                break
         step //= 2
 f.close()
