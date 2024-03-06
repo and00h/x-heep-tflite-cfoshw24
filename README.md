@@ -46,14 +46,31 @@ After a few seconds, some output should appear and you should be able to type co
 
 Once everything is working, press `Ctrl+A` then `Ctrl+D` to exit `screen`.
 
+#### Compile TFLM
+Note that compiling the Tensorflow Lite for Microcontrollers library will take a long time if done directly on the Pynq. To speed up the process, you can mount the Pynq's home folder on another machine where you have installed the RISC-V toolchain following the instructions in [X-HEEP's repository]((https://github.com/esl-epfl/x-heep)) and compile TFLM from there.
+
+For example you can run (**on another machine, not on the Pynq**):
+
+```bash
+mkdir pynq && sshfs xilinx@<pynq ip>:/home/xilinx pynq
+```
+
+And then run `make`:
+
+```bash
+cd pynq/x-heep-femu-sdk 
+
+make -j4 -C sw/riscv/lib/tflite-micro RISCV=/path/to/riscv/toolchain/on/your/machine X_HEEP_LIB_FOLDER=../../lib
+```
+
 ### 5. Compile and send the payloads
-While the app is running on X-HEEP, open another shell as the root user on the board, run
+While the app is running on X-HEEP, open another shell as the root user on the board and run
 
 ```bash
 source ./x-heep-femu-sdk/init.sh
 ```
 
-and `cd` into the `payloads` folder.
+Then `cd` into the `payloads` folder.
 
 #### Find start of buffer
 Run:
@@ -68,10 +85,10 @@ Note that X-HEEP may freeze since we are jumping to random locations in memory. 
 Run:
 
 ```bash
-python3 dump_data.py
+python3 dump_data.py <buffer_address_found_with_the_previous_script>
 ```
 
-When the script terminates, the dumped data will be inside the file `x_heep_uart_dump.bin`.
+When the script terminates, the memory dump will be inside `x_heep_uart_dump.bin`. To recover the model, open the dump with an hex editor and search for the "TFL3" string. Starting 4 bytes before "TFL3", copy everything that comes after into another file (you can also stop before the end if you can identify the end of the model's data) and you're good to go, you can load your stolen model with TFLM!
 
 #### Custom payload
 
