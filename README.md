@@ -11,7 +11,7 @@ git clone --recurse-submodules https://github.com/and00h/x-heep-tflite-cfoshw24
 
 ### 2. Rename the SDK submodule
 ```bash
-mv x-heep-tflite-cfoshw24 x-heep-femu-sdk
+mv x-heep-femu-tflite-sdk x-heep-femu-sdk
 ```
 
 ### 3. Setup X-HEEP
